@@ -286,6 +286,10 @@ class FeedGenerator(object):
                 if ln.get('length'):
                     selflink.attrib['length'] = ln['length']
                 break
+        # Add author elements
+        for author_email in self.__rss_author or []:
+            author = etree.SubElement(channel, 'author')
+            author.text = author_email
         if self.__rss_category:
             for cat in self.__rss_category:
                 category = etree.SubElement(channel, 'category')
